@@ -7,7 +7,7 @@ This pipeline is based on this [documentation](https://medium.com/@lessandro.ugu
 - [Requirements](#requirements)
 - [Architecture](#architecture)
 - [How to Deploy](#how-to-deploy)
-- [Optional: Access Vagrant Virtual Machine](#optional:access-vagrant-virtual-machine)
+- [Optional: Access Vagrant Virtual Machine](#optional:-access-vagrant-virtual-machine)
 - [Result](#result)
 - [Delete the env](#delete-the-env)
 
