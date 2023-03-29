@@ -28,28 +28,28 @@ Vagrant.configure("2") do |config|
         end
     end
 
-    (1..NODES).each do |i|
-        config.vm.define "docker-node-#{i}" do |node|
-            node.vm.box = IMAGE_NAME
-            node.vm.network "private_network", ip: "#{NETWORK_PREFIX}.#{i + 10}"
-            node.vm.hostname = "node-#{i}"
-            node.vm.provider :virtualbox do |vb|
-                vb.name = "docker-node-#{i}"
-                vb.memory = NODE_MEMORY
-                vb.cpus = 2
-                vb.customize ["modifyvm", :id, "--groups", "/bonde-cka"]
-            end
-        end
-    end
-        config.vm.provision "ansible" do |ansible|
-            ansible.playbook = "docker-setup/playbook.yml"
-            ansible.limit = "all"
-            ansible.extra_vars = {
-                MASTER_IP_ADDRESS: MASTER_IP_ADDRESS,
-            }
-            ansible.groups = {
-            "nodes" => ["docker-node-[1:2]"],
-            "docker-master" => ["docker-master"],
-            }
-    end
+    # (1..NODES).each do |i|
+    #     config.vm.define "docker-node-#{i}" do |node|
+    #         node.vm.box = IMAGE_NAME
+    #         node.vm.network "private_network", ip: "#{NETWORK_PREFIX}.#{i + 10}"
+    #         node.vm.hostname = "node-#{i}"
+    #         node.vm.provider :virtualbox do |vb|
+    #             vb.name = "docker-node-#{i}"
+    #             vb.memory = NODE_MEMORY
+    #             vb.cpus = 2
+    #             vb.customize ["modifyvm", :id, "--groups", "/bonde-cka"]
+    #         end
+    #     end
+    # end
+    #     config.vm.provision "ansible" do |ansible|
+    #         ansible.playbook = "docker-setup/playbook.yml"
+    #         ansible.limit = "all"
+    #         ansible.extra_vars = {
+    #             MASTER_IP_ADDRESS: MASTER_IP_ADDRESS,
+    #         }
+    #         ansible.groups = {
+    #         "nodes" => ["docker-node-[1:2]"],
+    #         "docker-master" => ["docker-master"],
+    #         }
+    # end
 end
